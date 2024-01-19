@@ -5,6 +5,7 @@
     <%- include('partials/sidemenu.ejs', {activeLink: 'home'}) %>
     <div class="dashboard-content fr-col-12 fr-col-lg-10 fr-col-xl-9 fr-col-offset-lg-1">
         <%- include('partials/notifications.ejs', {notifications: notifications}) %>
+        <%- include('partials/maintenance.ejs') %>
         <h2>Vos accès</h2>
         <% if (oidc_clients.length > 0) { %>
             <p>MonComptePro vous permet d’accéder à :</p>
