@@ -722,6 +722,7 @@ VALUES
    ARRAY [
      'https://espace-demande.dev.incubateur.anct.gouv.fr/complete/moncomptepro/',
      'http://localhost:3001/dev/complete/moncomptepro/',
+     'http://localhost:3000/complete/moncomptepro/',
      'http://localhost:3000/complete/moncomptepro/'
      ],
    ARRAY [
