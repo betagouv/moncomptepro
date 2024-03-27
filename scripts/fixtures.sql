@@ -889,6 +889,24 @@ VALUES
    'openid email organization profile',
    'https://mes-aides.1jeune1solution.beta.gouv.fr',
    'Outil d’accompagnement pour le simulateur de l’équipe Aides Jeunes porté par 1jeune1solution',
+   null, null, null, null),
+  (34,
+   'CNOUS-liste',
+   'DVIeqUPWW8csMZR2NvGrLEZX69o8bYFWmkfbxmWFpAaexp1hc4X8ZZLwuBKCEQ78ZdS96qpvKV6MkhB9kUIXwBevzIYoEPAsDkvt2QD3npnRBAKyyeWA0lDoNSGUV0zR',
+   'vJQLgsAhl8SmSLHxy7PvF5IsecyTxkG0FBbXX6uY8pVDzINZP2opXrMygmLJBJHItcA4t7Q3MiJzX1tvlJfcGEZe0C6BtmO5aRKXnH53rLOXkcjR5YBU0XUZmvR9vIEv',
+   ARRAY [
+      'https://acces-int.nuonet.fr/cnous-int/login/callback',
+      'https://acces-pp.nuonet.fr/cnous-pp/login/callback',
+      'https://acces.lescrous.fr/cnous/login/callback'
+     ],
+   ARRAY [
+      'https://acces-int.nuonet.fr/cnous-int/logout',
+      'https://acces-pp.nuonet.fr/cnous-pp/logout',
+      'https://acces.lescrous.fr/cnous/logout'
+     ],
+   'openid email organization profile',
+   'https://foo.bar',
+   'L’application doit permettre a des établissements de l’enseignement secondaire et supérieur, publics et privés, d’envoyer au cnous des listes d’étudiants pouvant bénéficier de la LOI n° 2023-265 du 13 avril 2023 visant à favoriser l’accès de tous les étudiants à une offre de restauration à tarif modéré.',
    null, null, null, null)
 ON CONFLICT (id)
   DO UPDATE
