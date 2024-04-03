@@ -55,6 +55,7 @@ This guide provides steps to run the MonComptePro Node.js application locally wh
 After setting up the application, start the Node.js server with:
 
 ```bash
+cd src
 npm run dev
 ```
 
