@@ -31,7 +31,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
-    "@gouvfr/dsfr": "~1.8.5",
+    "@gouvfr/dsfr": "~1.11.0",
     "@panva/jose": "^1.9.3",
     "@sentry/node": "^7.73.0",
     "@sentry/tracing": "^7.73.0",
