@@ -1,3 +1,8 @@
+body,
+html {
+  height: 100%;
+}
+
 #email-badge-lowercase {
     text-transform: lowercase;
 }
@@ -33,13 +38,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* DELETE WHEN HEADER FROM DSFR WILL REPLACE MCP HEADER */
+    border-bottom: solid 1px #ddd;
 }
 
 .header > img {
     height: 4.5rem;
     margin: 2.5rem 0 1.5rem;
 }
-
 
 @media all and (max-width: 576px) {
     .header > img {
@@ -98,3 +104,39 @@
     z-index: 1000;
     position: absolute;
 }
+
+/* MCP side illustration */
+
+.mcp-sticky-wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+  
+  .mcp-full-height {
+    height: 100%;
+  }
+  
+  .mcp-sticky-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .mcp-background-alt-grey {
+    background-color: #f6f6f6;
+  }
+  
+  /* 🚨 DELETE AFTER FINDING THE DSFR CLASS BUG 🚨*/
+  .mcp-pb {
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .mcp-pt {
+    padding-top: 2.5rem;
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .side-media {
+      display: none;
+    }
+  }
