@@ -1,38 +1,44 @@
-<div class="card-container">
-    <div class="fr-card">
-        <div class="fr-card__body">
-            <div class="fr-card__content">
-                <h1 class="fr-card__title">
-                    Rattachement en cours
-                </h1>
-                <div class="fr-card__desc">
-                    <p class="fr-mt-2w">
-                        ⏱️ Notre équipe étudie votre demande de rattachement à l’organisation
-                        <%= organization_label; %>
-                        avec l’adresse email <%= email; %>.
-                    </p>
-                    <p>
-                        Vous recevrez un email pour accéder à votre démarche dès que nous aurons terminé.
-                    </p>
-                    <p>
-                        <i>(délai moyen : 1 jour ouvré)</i>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fr-card">
-        <div class="fr-card__body">
-            <div class="fr-card__content">
+<div class="mcp-sticky-body">
+  <div class="fr-container--fluid">
+    <div
+      class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height"
+    >
+      <div
+        class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb"
+      >
+        <div>
+          <h1 class="fr-card__title">Rattachement en cours</h1>
+          <div class="fr-card__desc">
+            <p class="fr-mt-2w">
+              ⏱️ Notre équipe étudie votre demande de rattachement à
+              l’organisation <%= organization_label; %> avec l’adresse email <%=
+              email; %>.
+            </p>
+            <p>
+              Vous recevrez un email pour accéder à votre démarche dès que nous
+              aurons terminé.
+            </p>
+            <p>
+              <i>(délai moyen : 1 jour ouvré)</i>
+            </p>
+          </div>
+          <div class="fr-card">
+            <div class="fr-card__body">
+              <div class="fr-card__content">
                 <div class="login-help">
-                    <a
-                            class="fr-link fr-icon-question-line fr-link--icon-left"
-                            href="/help?moderation_id=<%= moderation_id; %>#modifier-moderation"
-                    >
-                        J’ai fait une erreur dans ma demande
-                    </a>
+                  <a
+                    class="fr-link fr-icon-question-line fr-link--icon-left"
+                    href="/help?moderation_id=<%= moderation_id; %>#modifier-moderation"
+                  >
+                    J’ai fait une erreur dans ma demande
+                  </a>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <%- include('../partials/side-illustration.ejs', {illu: 'authent.svg'}) %>
     </div>
+  </div>
 </div>

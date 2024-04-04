@@ -1,105 +1,110 @@
-<div class="card-container">
-    <%- include('../partials/notifications.ejs', {notifications: notifications, noWrapperDiv: true}) %>
-    <div class="fr-card">
-        <div class="fr-card__body">
-            <div class="fr-card__content">
-                <h1 class="fr-card__title">
-                    Accéder au compte
-                </h1>
-                <div class="fr-card__desc">
-                    <div class="fr-notice fr-notice--info notice--change-email fr-mb-2w">
-                        <div class="fr-container">
-                            <p class="fr-notice__body">
-                                <span class="fr-sr-only">Votre email :</span>
-                                <strong><%= email; %></strong>
-                                <a
-                                        class="fr-btn fr-btn--close"
-                                        title="Changer d’adresse email"
-                                        href="/users/start-sign-in"
-                                >
-                                    Changer d’adresse email
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <form action="/users/sign-in" method="post">
-
-                        <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
-
-                        <div class="fr-input-group fr-password js-password-container">
-                            <label class="fr-label" for="password-input">
-                                Renseignez votre mot de passe
-                            </label>
-                            <div class="fr-input-wrap">
-                                <input
-                                        class="fr-password__input fr-input js-password-container__input"
-                                        required
-                                        aria-required="true"
-                                        name="password"
-                                        autocomplete="current-password"
-                                        id="password-input"
-                                        type="password"
-                                        autofocus="on"
-                                >
+<div class="mcp-sticky-body">
+    <div class="fr-container--fluid mcp-full-height">
+        <div class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height">
+            <div class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb">
+                <div>
+                    <%- include('../partials/notifications.ejs', {notifications: notifications, noWrapperDiv: true}) %>
+                    <h1>
+                        Accéder au compte
+                    </h1>
+                    <div>
+                        <div class="fr-notice fr-notice--info notice--change-email fr-mb-2w">
+                            <div class="fr-container">
+                                <p class="fr-notice__body">
+                                    <span class="fr-sr-only">Votre email :</span>
+                                    <strong><%= email; %></strong>
+                                    <a
+                                            class="fr-btn fr-btn--close"
+                                            title="Changer d’adresse email"
+                                            href="/users/start-sign-in"
+                                    >
+                                        Changer d’adresse email
+                                    </a>
+                                </p>
                             </div>
-                            <div class="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm">
-                                <input
-                                        class="js-password-container__toggle"
-                                        aria-label="Afficher le mot de passe"
-                                        id="password-show"
-                                        type="checkbox"
-                                >
-                                <label class="fr-password__checkbox fr-label" for="password-show">
-                                    Afficher
+                        </div>
+
+                        <form action="/users/sign-in" method="post">
+
+                            <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
+
+                            <div class="fr-input-group fr-password js-password-container">
+                                <label class="fr-label" for="password-input">
+                                    Renseignez votre mot de passe
                                 </label>
+                                <div class="fr-input-wrap">
+                                    <input
+                                            class="fr-password__input fr-input js-password-container__input"
+                                            required
+                                            aria-required="true"
+                                            name="password"
+                                            autocomplete="current-password"
+                                            id="password-input"
+                                            type="password"
+                                            autofocus="on"
+                                    >
+                                </div>
+                                <div class="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm">
+                                    <input
+                                            class="js-password-container__toggle"
+                                            aria-label="Afficher le mot de passe"
+                                            id="password-show"
+                                            type="checkbox"
+                                    >
+                                    <label class="fr-password__checkbox fr-label" for="password-show">
+                                        Afficher
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <button class="fr-btn fr-mb-2w btn--fullwidth" type="submit">
-                            S’identifier
-                        </button>
-                        <p>
-                            <a href="/users/reset-password" class="fr-link">Mot de passe oublié ?</a>
-                        </p>
-                    </form>
+                            <button class="fr-btn fr-mb-2w btn--fullwidth" type="submit">
+                                S’identifier
+                            </button>
+                            <p>
+                                <a href="/users/reset-password" class="fr-link">Mot de passe oublié ?</a>
+                            </p>
+                        </form>
 
-                    <p class="fr-hr-or">ou</p>
+                        <p class="fr-hr-or">ou</p>
 
-                    <form action="/users/send-magic-link" method="post">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
+                        <form action="/users/send-magic-link" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
 
-                        <button
-                            class="fr-btn fr-mb-2w btn--fullwidth fr-btn--secondary fr-btn--icon-left fr-icon-mail-open-line"
-                            type="submit"
+                            <button
+                                class="fr-btn fr-mb-2w btn--fullwidth fr-btn--secondary fr-btn--icon-left fr-icon-mail-open-line"
+                                type="submit"
+                            >
+                                Recevoir un lien d’identification
+                            </button>
+                        </form>
+
+                        <p class="fr-hr-or">ou</p>
+
+                        <a
+                            class="fr-btn fr-mb-2w btn--fullwidth fr-btn--secondary fr-btn--icon-left fr-icon-lock-unlock-line"
+                            href="/users/sign-in-with-passkey"
                         >
-                            Recevoir un lien d’identification
-                        </button>
-                    </form>
+                            Se connecter avec une clé d’accès
+                        </a>
 
-                    <p class="fr-hr-or">ou</p>
-
-                    <a
-                        class="fr-btn fr-mb-2w btn--fullwidth fr-btn--secondary fr-btn--icon-left fr-icon-lock-unlock-line"
-                        href="/users/sign-in-with-passkey"
-                    >
-                        Se connecter avec une clé d’accès
-                    </a>
-
-                    <div class="card-button-container fr-mt-2w">
-                        <span>
-                                <button
-                                        id="go-back-link"
-                                        class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-arrow-go-back-line fr-btn--icon-left"
-                                >
-                                    retour
-                                </button>
-                        </span>
-                        <span></span>
+                        <div class="card-button-container fr-mt-2w">
+                            <span>
+                                    <button
+                                            id="go-back-link"
+                                            class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-arrow-go-back-line fr-btn--icon-left"
+                                    >
+                                        retour
+                                    </button>
+                            </span>
+                            <span></span>
+                        </div>
                     </div>
+                            
                 </div>
             </div>
+            <%- include('../partials/side-illustration.ejs', {illu: 'authent.svg'}) %>
         </div>
     </div>
 </div>
+
 <script type="module" src="<%= js('show-password.js') %>"></script>
 <script type="module" src="<%= js('go-back.js') %>"></script>

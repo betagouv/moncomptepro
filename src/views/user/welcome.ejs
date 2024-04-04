@@ -1,32 +1,35 @@
-<div class="card-container">
-    <div class="fr-card">
-        <div class="fr-card__body">
-            <div class="fr-card__content">
+<div class="mcp-sticky-body">
+    <div class="fr-container--fluid">
+        <div class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height">
+            <div class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb">
                 <div>
-                    <img src="/dist/tada.svg" alt="">
-                </div>
-                <br>
-                <h1 class="fr-card__title">
-                    Votre compte est créé !
-                </h1>
-                <div class="fr-card__desc">
-                    <p>
-                        Vous avez reçu un email de confirmation.
-                    </p>
-
-                    <% if (sponsor_label) { %>
+                    <div>
+                        <img src="/dist/tada.svg" alt="">
+                    </div>
+                    <br>
+                    <h1>
+                        Votre compte est créé !
+                    </h1>
+                    <div>
                         <p>
-                            Votre parrain <b><%= sponsor_label %></b> a été informé que vous avez rejoint son organisation sur MonComptePro.
+                            Vous avez reçu un email de confirmation.
                         </p>
-                    <% } %>
 
-                    <form action="/users/welcome" method="post">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
+                        <% if (sponsor_label) { %>
+                            <p>
+                                Votre parrain <b><%= sponsor_label %></b> a été informé que vous avez rejoint son organisation sur MonComptePro.
+                            </p>
+                        <% } %>
 
-                        <%- include('../partials/card-button-container.ejs', {label: 'Continuer'}) %>
-                    </form>
+                        <form action="/users/welcome" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
+
+                            <%- include('../partials/card-button-container.ejs', {label: 'Continuer'}) %>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <%- include('../partials/side-illustration.ejs', {illu: 'welcome.svg'}) %>
         </div>
     </div>
 </div>

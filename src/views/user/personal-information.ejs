@@ -1,81 +1,84 @@
-<div class="card-container">
-    <%- include('../partials/notifications.ejs', {notifications: notifications, noWrapperDiv: true}) %>
-    <div class="fr-card">
-        <div class="fr-card__body">
-            <div class="fr-card__content">
-                <h1 class="fr-card__title">
-                    Renseigner son identité
-                </h1>
-                <div class="fr-card__desc">
-                    <p>
-                        Ces informations nous permettent d’authentifier votre compte.
-                    </p>
+<div class="mcp-sticky-body">
+    <div class="fr-container--fluid">
+        <div class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height">
+            <div class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb">
+                <div>
+                    <%- include('../partials/notifications.ejs', {notifications: notifications, noWrapperDiv: true}) %>
+                        <h1>
+                            Renseigner son identité
+                        </h1>
+                        <div>
+                            <p>
+                                Ces informations nous permettent d’authentifier votre compte.
+                            </p>
 
-                    <p aria-hidden="true" class="fr-hint-text">Les champs notés * sont obligatoires.</p>
+                            <p aria-hidden="true" class="fr-hint-text">Les champs notés * sont obligatoires.</p>
 
-                    <form action="/users/personal-information" method="post">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
+                            <form action="/users/personal-information" method="post">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken; %>" autocomplete="off">
 
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="given_name">
-                                Prénom<span aria-hidden="true"> *</span>
-                            </label>
-                            <input
-                                    class="fr-input" required type="text" name="given_name"
-                                    pattern="[^$\&+:;=?@#\|<>.^*\(\)%!\d_\[\]\{\}\\\/\x22`~]*"
-                                    title="un nom ne doit pas contenir de chiffres ou de caractères spéciaux"
-                                    id="given_name"
-                            <% if (given_name) { %> value="<%= given_name; %>"
-                                    <% } %>
-                            >
+                                <div class="fr-input-group">
+                                    <label class="fr-label" for="given_name">
+                                        Prénom<span aria-hidden="true"> *</span>
+                                    </label>
+                                    <input
+                                            class="fr-input" required type="text" name="given_name"
+                                            pattern="[^$\&+:;=?@#\|<>.^*\(\)%!\d_\[\]\{\}\\\/\x22`~]*"
+                                            title="un nom ne doit pas contenir de chiffres ou de caractères spéciaux"
+                                            id="given_name"
+                                    <% if (given_name) { %> value="<%= given_name; %>"
+                                            <% } %>
+                                    >
+                                </div>
+
+                                <div class="fr-input-group">
+                                    <label class="fr-label" for="family_name">
+                                        Nom<span aria-hidden="true"> *</span>
+                                    </label>
+                                    <input
+                                            class="fr-input" required type="text" name="family_name"
+                                            pattern="[^$\&+:;=?@#\|<>.^*\(\)%!\d_\[\]\{\}\\\/\x22`~]*"
+                                            title="un nom ne doit pas contenir de chiffres ou de caractères spéciaux"
+                                            id="family_name"
+                                    <% if (family_name) { %> value="<%= family_name; %>"
+                                            <% } %>
+                                    >
+                                </div>
+
+                                <div class="fr-input-group">
+                                    <label class="fr-label" for="phone_number">
+                                        Numéro de téléphone professionnel
+                                        <span class="fr-hint-text">
+                                            Il pourra faciliter l’utilisation de nos services (assistance, demandes de précisions).
+                                        </span>
+                                    </label>
+                                    <input
+                                            class="fr-input" type="tel" name="phone_number"
+                                            id="phone_number"
+                                            pattern="\+?(?:[0-9][ \-]?){6,14}[0-9]"
+                                            title="un numéro de téléphone doit être écrit en chiffres, avec ou sans extension internationale (ex: France +33)"
+                                    <% if (phone_number) { %> value="<%= phone_number; %>"
+                                            <% } %>
+                                    >
+                                </div>
+
+                                <div class="fr-input-group">
+                                    <label class="fr-label" for="job">
+                                        Profession ou rôle au sein de votre organisation<span aria-hidden="true"> *</span>
+                                    </label>
+                                    <input
+                                            class="fr-input" required type="text" name="job" id="job"
+                                    <% if (job) { %> value="<%= job; %>"
+                                            <% } %>
+                                    >
+                                </div>
+
+                                <%- include('../partials/card-button-container.ejs', {label: 'Valider'}) %>
+                            </form>
                         </div>
-
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="family_name">
-                                Nom<span aria-hidden="true"> *</span>
-                            </label>
-                            <input
-                                    class="fr-input" required type="text" name="family_name"
-                                    pattern="[^$\&+:;=?@#\|<>.^*\(\)%!\d_\[\]\{\}\\\/\x22`~]*"
-                                    title="un nom ne doit pas contenir de chiffres ou de caractères spéciaux"
-                                    id="family_name"
-                            <% if (family_name) { %> value="<%= family_name; %>"
-                                    <% } %>
-                            >
-                        </div>
-
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="phone_number">
-                                Numéro de téléphone professionnel
-                                <span class="fr-hint-text">
-                                    Il pourra faciliter l’utilisation de nos services (assistance, demandes de précisions).
-                                </span>
-                            </label>
-                            <input
-                                    class="fr-input" type="tel" name="phone_number"
-                                    id="phone_number"
-                                    pattern="\+?(?:[0-9][ \-]?){6,14}[0-9]"
-                                    title="un numéro de téléphone doit être écrit en chiffres, avec ou sans extension internationale (ex: France +33)"
-                            <% if (phone_number) { %> value="<%= phone_number; %>"
-                                    <% } %>
-                            >
-                        </div>
-
-                        <div class="fr-input-group">
-                            <label class="fr-label" for="job">
-                                Profession ou rôle au sein de votre organisation<span aria-hidden="true"> *</span>
-                            </label>
-                            <input
-                                    class="fr-input" required type="text" name="job" id="job"
-                            <% if (job) { %> value="<%= job; %>"
-                                    <% } %>
-                            >
-                        </div>
-
-                        <%- include('../partials/card-button-container.ejs', {label: 'Valider'}) %>
-                    </form>
                 </div>
             </div>
+            <%- include('../partials/side-illustration.ejs', {illu: 'authent.svg'}) %>
         </div>
     </div>
 </div>

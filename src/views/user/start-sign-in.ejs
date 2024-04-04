@@ -1,9 +1,9 @@
 <div class="mcp-sticky-body">
-<div class="fr-container--fluid mcp-full-height">
-    <div class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height">
-        <div class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb">
-            <div>
-                <%- include('../partials/notifications.ejs', {notifications: notifications, noWrapperDiv: true}) %>
+    <div class="fr-container--fluid">
+        <div class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height">
+            <div class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb">
+                <div>
+                    <%- include('../partials/notifications.ejs', {notifications: notifications, noWrapperDiv: true}) %>
                     <h1>
                         S’inscrire ou se connecter
                     </h1>
@@ -57,11 +57,10 @@
 
                             <%- include('../partials/card-button-container.ejs', {label: 'Valider', showGoBackButton: true}) %>
                         </form>
-                    </div>
-                        
+                    </div>           
+                </div>
             </div>
+            <%- include('../partials/side-illustration.ejs', {illu: 'authent.svg'}) %>
         </div>
-        <%- include('../partials/side-illustration.ejs') %>
     </div>
-</div>
 </div>
