@@ -20,7 +20,7 @@ body {
 
 .dashboard-header {
   background-color: #fff;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 18, .16));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 18, 0.16));
 }
 
 .dashboard-header .dashboard-header__container {
@@ -67,7 +67,7 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 300px auto;
-  grid-template-areas: 'nav content';
+  grid-template-areas: "nav content";
 }
 
 @media (max-width: 62em) {
@@ -77,13 +77,12 @@ body {
 }
 
 @media all and (max-width: 768px) {
-
   .dashboard-container {
     grid-template-columns: 100%;
     grid-template-areas:
-                'head'
-                'nav'
-                'content';
+      "head"
+      "nav"
+      "content";
   }
 
   .dashboard-container .dashboard-content {

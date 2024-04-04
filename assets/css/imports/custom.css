@@ -4,72 +4,72 @@ html {
 }
 
 #email-badge-lowercase {
-    text-transform: lowercase;
+  text-transform: lowercase;
 }
 
 .inline-form {
-    display: inline;
+  display: inline;
 }
 
 .error-code {
-    white-space: pre-line;
+  white-space: pre-line;
 }
 
 .alert-description {
-    white-space: break-spaces;
+  white-space: break-spaces;
 }
 
 /* magic link icon */
 #magic-link-icon-inline {
-    padding: 0 1.5rem;
+  padding: 0 1.5rem;
 }
 
 #magic-link-icon-block {
-    text-align: center;
-    margin: 3rem 0;
+  text-align: center;
+  margin: 3rem 0;
 }
 
 #magic-link-icon-block > img {
-    height: 46px;
+  height: 46px;
 }
 
 /* moncomptepro-header */
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* DELETE WHEN HEADER FROM DSFR WILL REPLACE MCP HEADER */
-    border-bottom: solid 1px #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* DELETE WHEN HEADER FROM DSFR WILL REPLACE MCP HEADER */
+  border-bottom: solid 1px #ddd;
 }
 
 .header > img {
-    height: 4.5rem;
-    margin: 2.5rem 0 1.5rem;
+  height: 4.5rem;
+  margin: 2.5rem 0 1.5rem;
 }
 
 @media all and (max-width: 576px) {
-    .header > img {
-        height: 3.5rem;
-        margin: 1.5rem 0 0.5rem;
-    }
+  .header > img {
+    height: 3.5rem;
+    margin: 1.5rem 0 0.5rem;
+  }
 }
 
 /* not-found-error */
 .not-found-error {
-    gap: 0;
+  gap: 0;
 }
 
 .not-found-error > img {
-    height: 18rem;
+  height: 18rem;
 }
 
 .not-found-error > h1 {
-    text-align: center;
-    max-width: 52rem;
+  text-align: center;
+  max-width: 52rem;
 }
 
 .not-found-error > *:last-child {
-    margin-bottom: 8rem;
+  margin-bottom: 8rem;
 }
 
 /*
@@ -81,62 +81,62 @@ html {
 }
 
 .title-with-anchor > a {
-    order: -1;
-    align-self: center;
-    opacity: 0;
-    transform: translateX(-28px);
-    margin-right: -32px;
-    background-color: transparent !important;
+  order: -1;
+  align-self: center;
+  opacity: 0;
+  transform: translateX(-28px);
+  margin-right: -32px;
+  background-color: transparent !important;
 }
 
 .title-with-anchor:hover > a,
 .title-with-anchor > a:focus-visible {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* display a loading bar on page load */
 #loader-bar {
-    transition: width 150ms ease-in-out;
-    width: 100%;
-    height: 3px;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    position: absolute;
+  transition: width 150ms ease-in-out;
+  width: 100%;
+  height: 3px;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  position: absolute;
 }
 
 /* MCP side illustration */
 
 .mcp-sticky-wrapper {
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: 1fr auto;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.mcp-full-height {
+  height: 100%;
+}
+
+.mcp-sticky-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.mcp-background-alt-grey {
+  background-color: #f6f6f6;
+}
+
+/* 🚨 DELETE AFTER FINDING THE DSFR CLASS BUG 🚨*/
+.mcp-pb {
+  padding-bottom: 2.5rem !important;
+}
+
+.mcp-pt {
+  padding-top: 2.5rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .side-media {
+    display: none;
   }
-  
-  .mcp-full-height {
-    height: 100%;
-  }
-  
-  .mcp-sticky-body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  .mcp-background-alt-grey {
-    background-color: #f6f6f6;
-  }
-  
-  /* 🚨 DELETE AFTER FINDING THE DSFR CLASS BUG 🚨*/
-  .mcp-pb {
-    padding-bottom: 2.5rem !important;
-  }
-  
-  .mcp-pt {
-    padding-top: 2.5rem;
-  }
-  
-  @media only screen and (max-width: 991px) {
-    .side-media {
-      display: none;
-    }
-  }
+}
