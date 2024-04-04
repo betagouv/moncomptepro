@@ -5,10 +5,6 @@ body {
   flex-direction: column;
 }
 
-footer {
-  margin-top: auto;
-}
-
 .page-container {
   max-width: 1200px;
   width: 100%;
