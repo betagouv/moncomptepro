@@ -1,6 +1,10 @@
 //
 
 describe("join organizations", () => {
+  before(() => {
+    cy.seed(__filename.split("/").at(-1).replace(".cy.js", ""));
+  });
+
   beforeEach(() => {
     cy.mailslurp().then((mailslurp) =>
       mailslurp.inboxController.deleteAllInboxEmails({

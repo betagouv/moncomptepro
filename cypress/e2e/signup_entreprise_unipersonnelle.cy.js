@@ -2,6 +2,7 @@
 
 describe("Signup into new entreprise unipersonnelle", () => {
   before(() => {
+    cy.seed(__filename.split("/").at(-1).replace(".cy.js", ""));
     cy.mailslurp().then((mailslurp) =>
       mailslurp.inboxController.deleteAllInboxEmails({
         inboxId: "8b805202-b7b3-42ac-b047-f37bdc559211",

@@ -3,7 +3,7 @@ module.exports = {
   defaultCommandTimeout: 60000,
   pageLoadTimeout: 60000,
   e2e: {
-    baseUrl: "http://localhost:3000",
+    // baseUrl: "http://app.moncomptepro.localhost",
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
@@ -17,4 +17,5 @@ module.exports = {
       return require("./cypress/plugins/index.js")(on, config);
     },
   },
+  video: true,
 };

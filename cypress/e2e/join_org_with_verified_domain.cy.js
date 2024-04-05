@@ -2,6 +2,7 @@
 
 describe("join organizations", () => {
   before(() => {
+    cy.seed(__filename.split("/").at(-1).replace(".cy.js", ""));
     return cy
       .mailslurp()
       .then((mailslurp) =>

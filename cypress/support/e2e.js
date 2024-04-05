@@ -37,3 +37,25 @@ Cypress.Commands.add("login", (email, password) => {
       .click();
   });
 });
+
+Cypress.Commands.add("seed", (dirname) => {
+  const env = { DIRNAME: dirname };
+  const args = {
+    compose: [`--project-directory ${dirname}`].join(" "),
+    up: ["--detach", "--build"].join(" "),
+  };
+  {
+    const command = `docker compose ${args.compose} up ${args.up}`;
+    cy.task("log", `$ ${command}`);
+    cy.exec(command, {
+      env,
+    }).then((result) => cy.task("log", result.stdout));
+  }
+  {
+    const command = `docker compose ${args.compose} logs --follow migrated-db`;
+    cy.task("log", `$ ${command}`);
+    cy.exec(command, {
+      env,
+    }).then((result) => cy.task("log", result.stdout));
+  }
+});

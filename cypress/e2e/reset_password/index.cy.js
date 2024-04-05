@@ -2,6 +2,8 @@
 
 describe("sign-in with magic link", () => {
   before(() => {
+    cy.seed(__dirname);
+
     cy.mailslurp().then((mailslurp) =>
       mailslurp.inboxController.deleteAllInboxEmails({
         inboxId: "8e79c68c-9ce1-4dfe-8e58-fa3763d4cff7",
@@ -9,9 +11,13 @@ describe("sign-in with magic link", () => {
     );
   });
 
+  after(() => {
+    cy.exec(`docker compose --project-directory ${__dirname} stop`);
+  });
+
   it("should reset password then sign-in", function () {
     // Visit the signup page
-    cy.visit(`/users/start-sign-in`);
+    cy.visit(`http://app.moncomptepro.localhost/users/start-sign-in`);
 
     // Sign in with the wrong password
     cy.get('[name="login"]').type(

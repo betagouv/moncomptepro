@@ -2,6 +2,7 @@
 
 describe("sign-in with email verification renewal", () => {
   before(() => {
+    cy.seed(__filename.split("/").at(-1).replace(".cy.js", ""));
     cy.mailslurp().then((mailslurp) =>
       mailslurp.inboxController.deleteAllInboxEmails({
         inboxId: "bad1b70d-e5cb-436c-9ff3-f83d4af5d198",

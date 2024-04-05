@@ -1,8 +1,16 @@
 //
 
 describe("sign-in from agentconnect client", () => {
+  before(() => {
+    cy.seed(__dirname);
+  });
+
+  after(() => {
+    cy.exec(`docker compose --project-directory ${__dirname} stop`);
+  });
+
   it("should sign-in", function () {
-    cy.visit(`http://localhost:4001`);
+    cy.visit(`http://moncomptepro-agentconnect-client.localhost`);
     cy.get("button.moncomptepro-button").click();
 
     cy.get('[name="password"]').type("password123");
