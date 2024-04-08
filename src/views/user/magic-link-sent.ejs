@@ -1,24 +1,31 @@
-<div class="card-container">
-    <div class="fr-card">
-        <div class="fr-card__body">
-            <div class="fr-card__content">
-                <h1 class="fr-card__title">
-                    Consultez vos e-mails
-                </h1>
-                <div class="fr-card__desc">
-                    <p>
-                        Votre lien vous attend
-                        <% if (locals.email) { %> à l’adresse...
-                        <br aria-hidden="true">
-                        <b><%= email %></b>
-                        <% } %>
-                    </p>
-                    <div id="magic-link-icon-block">
-                        <img src="/dist/magic-link.svg" alt="">
+<div class="mcp-sticky-body">
+    <div class="fr-container--fluid mcp-full-height">
+        <div class="fr-grid-row fr-grid-row--center fr-grid-row--middle mcp-full-height">
+            <div class="fr-col-lg-6 fr-col-sm-9 fr-px-md-15v fr-px-5v fr-pt-5w mcp-full-height mcp-pb">
+                <div class="fr-card">
+                    <div class="fr-card__body">
+                        <div class="fr-card__content">
+                            <h1 class="fr-card__title">
+                                Consultez vos e-mails
+                            </h1>
+                            <div class="fr-card__desc">
+                                <p>
+                                    Votre lien vous attend
+                                    <% if (locals.email) { %> à l’adresse...
+                                    <br aria-hidden="true">
+                                    <b><%= email %></b>
+                                    <% } %>
+                                </p>
+                                <div id="magic-link-icon-block">
+                                    <img src="/dist/magic-link.svg" alt="">
+                                </div>
+                                <p>Cliquez sur le lien dans l’email pour vous connecter.</p>
+                            </div>
+                        </div>
                     </div>
-                    <p>Cliquez sur le lien dans l’email pour vous connecter.</p>
                 </div>
             </div>
+            <%- include('../partials/side-illustration.ejs', {illu: 'authent.svg'}) %>
         </div>
     </div>
 </div>
