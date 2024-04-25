@@ -70,7 +70,7 @@ app.use(
   }),
 );
 
-app.use((req, res, next) => {
+app.use(function helmetContentSecurityPolicyMiddleware(req, res, next) {
   const cspConfig = {
     directives: {
       defaultSrc: ["'self'"],
@@ -131,7 +131,7 @@ const sessionMiddleware =
   });
 
 // Prevent creation of sessions for API calls on /oauth or /api routes
-app.use((req, res, next) => {
+app.use(function appSessionMiddleware(req, res, next) {
   if (req.headers.authorization) {
     return next();
   }

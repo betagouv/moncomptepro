@@ -108,7 +108,11 @@ export const ejsLayoutMiddlewareFactory = (
   app: Application,
   use_dashboard_header: boolean = false,
 ) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return function ejsLayoutMiddleware(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     const orig = res.render;
     res.render = (view, locals = {}) => {
       app.render(
