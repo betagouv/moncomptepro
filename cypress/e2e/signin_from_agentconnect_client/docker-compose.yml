@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  moncomptepro:
+    depends_on:
+      db:
+        condition: service_started
+      migrated-db:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    env_file:
+      - ./signin_from_agentconnect_client.conf
+    extends:
+      file: ../../docker-compose.yml
+      service: moncomptepro
+
+  moncomptepro-agentconnect-client:
+    depends_on:
+      - moncomptepro
+    image: ghcr.io/betagouv/moncomptepro-test-client
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.moncomptepro-standard-client.rule=Host(`moncomptepro-agentconnect-client.localhost`)
+      - traefik.http.services.moncomptepro-standard-client.loadbalancer.server.port=80
+    environment:
+      HOST: http://moncomptepro-agentconnect-client.localhost
+      LOGIN_HINT: unused1@yopmail.com
+      MCP_CLIENT_ID: agentconnect_client_id
+      MCP_CLIENT_SECRET: agentconnect_client_secret
+      MCP_ID_TOKEN_SIGNED_RESPONSE_ALG: ES256
+      MCP_PROVIDER: http://app.moncomptepro.localhost/
+      MCP_SCOPES: openid uid given_name usual_name email siren siret organizational_unit belonging_population phone chorusdt
+      MCP_USERINFO_SIGNED_RESPONSE_ALG: ES256
+      PORT: 80
+      SITE_TITLE: moncomptepro-agentconnect-client
+      STYLESHEET_URL: ""
+    networks:
+      default:
+        aliases:
+          - moncomptepro-agentconnect-client.localhost
+
+  migrated-db:
+    depends_on:
+      - db
+    extends:
+      file: ../../docker-compose.yml
+      service: migrated-db
+    volumes:
+      - ./signin_from_agentconnect_client.sql:/app/seed.sql:ro
+
+  db:
+    extends:
+      file: ../../../docker-compose.yml
+      service: db
+
+  redis:
+    extends:
+      file: ../../../docker-compose.yml
+      service: redis
+
+  traefik:
+    extends:
+      file: ../../docker-compose.yml
+      service: traefik
+
+volumes:
+  db-data:

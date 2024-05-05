@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  moncomptepro:
+    depends_on:
+      db:
+        condition: service_started
+      migrated-db:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    env_file:
+      - ./signin_from_standard_client.conf
+    extends:
+      file: ../../docker-compose.yml
+      service: moncomptepro
+
+  moncomptepro-standard-client:
+    depends_on:
+      - moncomptepro
+    image: ghcr.io/betagouv/moncomptepro-test-client
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.moncomptepro-standard-client.rule=Host(`moncomptepro-standard-client.localhost`)
+      - traefik.http.services.moncomptepro-standard-client.loadbalancer.server.port=80
+    environment:
+      SITE_TITLE: moncomptepro-standard-client
+      PORT: 80
+      HOST: http://moncomptepro-standard-client.localhost
+      MCP_CLIENT_ID: standard_client_id
+      MCP_CLIENT_SECRET: standard_client_secret
+      MCP_PROVIDER: http://app.moncomptepro.localhost/
+      MCP_SCOPES: openid email profile organization
+      STYLESHEET_URL: ""
+    networks:
+      default:
+        aliases:
+          - moncomptepro-standard-client.localhost
+
+  migrated-db:
+    depends_on:
+      - db
+    extends:
+      file: ../../docker-compose.yml
+      service: migrated-db
+    volumes:
+      - ./signin_from_standard_client.sql:/app/seed.sql:ro
+
+  db:
+    extends:
+      file: ../../../docker-compose.yml
+      service: db
+
+  redis:
+    extends:
+      file: ../../../docker-compose.yml
+      service: redis
+
+  traefik:
+    extends:
+      file: ../../docker-compose.yml
+      service: traefik
+
+volumes:
+  db-data:

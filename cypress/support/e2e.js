@@ -25,7 +25,7 @@ Cypress.Commands.overwrite("checkA11y", checkA11y);
 Cypress.Commands.add("login", (email, password) => {
   cy.session([email, password], () => {
     // Visit the signup page
-    cy.visit(`/users/start-sign-in`);
+    cy.visit(`http://app.moncomptepro.localhost/users/start-sign-in`);
 
     // Sign in with the existing inbox
     cy.get('[name="login"]').type(email);
@@ -36,4 +36,44 @@ Cypress.Commands.add("login", (email, password) => {
       .contains("S’identifier")
       .click();
   });
+});
+
+Cypress.Commands.add("seed", (dirname) => {
+  const env = { SEED_DIR: dirname };
+  const args = {
+    compose: [`--project-directory ${dirname}`].join(" "),
+    up: ["--build", "--detach"].join(" "),
+  };
+
+  const command = `docker compose ${args.compose} ps --services --filter "status=running"`;
+  cy.task("log", `$ ${command}`);
+  cy.exec(command).then((result) => {
+    if (result.stdout.includes("moncomptepro")) {
+      return;
+    }
+
+    {
+      const command = `docker compose ${args.compose} up ${args.up}`;
+      cy.task("log", `$ ${command}`);
+      cy.exec(command, {
+        env,
+      }).then((result) => cy.task("log", result.stdout));
+    }
+  });
+
+  {
+    const command = `curl ${[
+      "--fail",
+      "--location",
+      "--no-progress-meter",
+      "--output /dev/null",
+      "--retry 5",
+      "--retry-all-errors",
+      "--show-error",
+    ].join(" ")} http://app.moncomptepro.localhost`;
+    cy.task("log", `$ ${command}`);
+    cy.exec(command, {
+      env,
+    }).then((result) => cy.task("log", result.stdout));
+  }
 });

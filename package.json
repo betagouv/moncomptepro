@@ -6,6 +6,7 @@
   "engines": {
     "node": "20.12.2"
   },
+  "packageManager": "npm@10.5.1+sha256.06b9421a6b708ed6b6c0840e54729851e067b45ad911b192ebee2cb03b0adef2",
   "scripts": {
     "lint": "prettier --write */*.ts",
     "start": "tsx src/index.ts",
@@ -22,7 +23,6 @@
     "test": "run-s test:*",
     "test:lint": "prettier */*.ts --list-different",
     "test:unit": "CONSIDER_ALL_EMAIL_DOMAINS_AS_NON_FREE=False DO_NOT_USE_ANNUAIRE_EMAILS=False DO_NOT_CHECK_EMAIL_DELIVERABILITY=False mocha --require tsx test/*.ts",
-    "watch:js": "tsc --watch --preserveWatchOutput",
     "watch:node": "tsx --watch src/index.ts",
     "watch:ejs": "CHOKIDAR_USEPOLLING=true copy-and-watch --clean --watch \"src/views/**/*.ejs\" src/views/*.ejs build/views/",
     "watch:assets": "NODE_ENV=development vite build --clearScreen false --watch"

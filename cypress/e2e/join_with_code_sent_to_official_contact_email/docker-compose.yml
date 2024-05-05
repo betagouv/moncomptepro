@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  moncomptepro:
+    depends_on:
+      db:
+        condition: service_started
+      migrated-db:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    env_file:
+      - ./join_with_code_sent_to_official_contact_email.conf
+    extends:
+      file: ../../docker-compose.yml
+      service: moncomptepro
+
+  migrated-db:
+    depends_on:
+      - db
+    extends:
+      file: ../../docker-compose.yml
+      service: migrated-db
+    volumes:
+      - ./join_with_code_sent_to_official_contact_email.sql:/app/seed.sql:ro
+
+  db:
+    extends:
+      file: ../../../docker-compose.yml
+      service: db
+
+  redis:
+    extends:
+      file: ../../../docker-compose.yml
+      service: redis
+
+  traefik:
+    extends:
+      file: ../../docker-compose.yml
+      service: traefik
+
+volumes:
+  db-data:
