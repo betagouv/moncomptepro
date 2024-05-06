@@ -1,10 +1,19 @@
+interface EmailDomains {
+  domain: string;
+  type:
+    | "verified"
+    | "official_contact"
+    | "authorized"
+    | "external"
+    | "trackdechet_postal_mail";
+  suggest: boolean;
+  verified_at: Date;
+}
+
 interface Organization {
   id: number;
   siret: string;
-  verified_email_domains: string[];
-  authorized_email_domains: string[];
-  external_authorized_email_domains: string[];
-  trackdechets_email_domains: string[];
+  email_domains: EmailDomains[];
   created_at: Date;
   updated_at: Date;
   cached_libelle: string | null;

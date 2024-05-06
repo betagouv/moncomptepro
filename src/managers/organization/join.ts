@@ -149,15 +149,8 @@ export const joinOrganization = async ({
     throw new UserAlreadyAskedToJoinOrganizationError(moderation_id);
   }
 
-  const {
-    id: organization_id,
-    cached_libelle,
-    authorized_email_domains,
-    verified_email_domains,
-    trackdechets_email_domains,
-    external_authorized_email_domains,
-  } = organization;
-  const { email, given_name, family_name } = user;
+  const { id: organization_id, cached_libelle, email_domains } = organization;
+  const { email } = user;
   const domain = getEmailDomain(email);
 
   if (isEntrepriseUnipersonnelle(organization)) {
@@ -168,7 +161,7 @@ export const joinOrganization = async ({
     return await linkUserToOrganization({
       organization_id,
       user_id,
-      verification_type: null,
+      verification_type: "no_verification_means_for_unipersonnel_org",
     });
   }
 
@@ -202,7 +195,7 @@ export const joinOrganization = async ({
         await markDomainAsVerified({
           organization_id,
           domain: contactDomain,
-          verification_type: "official_contact_domain",
+          verification_type: "official_contact",
         });
       }
 
@@ -299,7 +292,7 @@ export const joinOrganization = async ({
     return await linkUserToOrganization({
       organization_id,
       user_id,
-      verification_type: null,
+      verification_type: "null",
     });
   }
 

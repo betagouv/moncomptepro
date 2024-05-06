@@ -1,14 +1,15 @@
 interface BaseUserOrganizationLink {
   is_external: boolean;
   verification_type:
-    | "verified_email_domain"
-    | "trackdechets_email_domain"
-    | "official_contact_email"
-    | "official_contact_domain"
+    | "domain"
+    | "verified_contact_email"
     | "code_sent_to_official_contact_email"
+    | "official_contact_email"
     | "in_liste_dirigeants_rna"
-    | "no_validation_means_available"
+    | "no_verification_means_for_unipersonnel_org"
+    | "no_verification_means_available"
     | null;
+  verified_at: Date;
   authentication_by_peers_type:
     | "all_members_notified"
     | "sponsored_by_member"

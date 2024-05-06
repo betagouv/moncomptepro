@@ -1,13 +1,12 @@
-import { isEmpty } from "lodash-es";
+import { isEmpty, some } from "lodash-es";
 import { NotFoundError } from "../../config/errors";
 import {
-  findByUserId,
   findById as findOrganizationById,
+  findByUserId,
   findPendingByUserId,
   getUsers,
 } from "../../repositories/organization/getters";
 import {
-  addAuthorizedDomain,
   addVerifiedDomain,
   deleteUserOrganization,
   updateUserOrganizationLink,
@@ -55,22 +54,18 @@ export const markDomainAsVerified = async ({
 }: {
   organization_id: number;
   domain: string;
-  verification_type: UserOrganizationLink["verification_type"];
+  verification_type: EmailDomains["type"];
 }) => {
   const organization = await findOrganizationById(organization_id);
   if (isEmpty(organization)) {
     throw new NotFoundError();
   }
 
-  const { siret, verified_email_domains, authorized_email_domains } =
-    organization;
+  const { siret, email_domains } = organization;
 
-  if (!verified_email_domains.includes(domain)) {
+  if (!some(email_domains, { domain, type: verification_type })) {
+    // TODO we should do an upsert here and update the verification date
     await addVerifiedDomain({ siret, domain });
-  }
-
-  if (!authorized_email_domains.includes(domain)) {
-    await addAuthorizedDomain({ siret, domain });
   }
 
   const usersInOrganization = await getUsers(organization_id);
@@ -81,7 +76,7 @@ export const markDomainAsVerified = async ({
         const userDomain = getEmailDomain(email);
         if (userDomain === domain && isEmpty(current_verification_type)) {
           return updateUserOrganizationLink(organization_id, id, {
-            verification_type,
+            verification_type: "domain",
           });
         }
 
