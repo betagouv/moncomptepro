@@ -37,3 +37,31 @@ Cypress.Commands.add("login", (email, password) => {
       .click();
   });
 });
+
+const RECORD = Cypress.env("RECORD") === true;
+
+if (RECORD) {
+  for (const command of [
+    "visit",
+    "click",
+    "trigger",
+    "type",
+    "clear",
+    "reload",
+  ]) {
+    Cypress.Commands.overwrite(command, (originalFn, ...args) => {
+      const origVal = originalFn(...args);
+
+      return new Promise((resolve) => {
+        setTimeout(
+          () => {
+            resolve(origVal);
+          },
+          RECORD ? 2000 : 0,
+        );
+      });
+    });
+  }
+  Cypress.config("viewportWidth", 2560);
+  Cypress.config("viewportHeight", 1440);
+}
