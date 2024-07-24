@@ -6,6 +6,7 @@
   "engines": {
     "node": "20.12.2"
   },
+  "packageManager": "npm@10.5.1+sha256.06b9421a6b708ed6b6c0840e54729851e067b45ad911b192ebee2cb03b0adef2",
   "scripts": {
     "lint": "prettier --write */*.ts",
     "start": "tsx src/index.ts",
