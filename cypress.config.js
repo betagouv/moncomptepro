@@ -1,3 +1,5 @@
+const RECORD = process.env.CYPRESS_RECORD === "true";
+
 export default {
   chromeWebSecurity: false,
   defaultCommandTimeout: 60000,
@@ -17,4 +19,5 @@ export default {
       return config;
     },
   },
+  video: RECORD,
 };
