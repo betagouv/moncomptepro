@@ -10,6 +10,10 @@ const login = (cy) => {
     .click();
 };
 
+before(() => {
+  cy.seed();
+});
+
 describe("redirect after session expiration", () => {
   it("should be redirected to organization management page", function () {
     cy.visit(`/manage-organizations`);

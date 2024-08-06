@@ -1,4 +1,8 @@
+//
+
 import { generateToken } from "@sunknudsen/totp";
+
+//
 
 const login = (cy) => {
   cy.get('[name="login"]').type("unused1@yopmail.com");
@@ -17,6 +21,10 @@ const tfaAuth = (cy) => {
     '[action="/users/2fa-sign-in-with-authenticator-app"] [type="submit"]',
   ).click();
 };
+
+before(() => {
+  cy.seed();
+});
 
 describe("force recent connexion + 2FA on admin pages", () => {
   it("should be redirected after long connexion", function () {

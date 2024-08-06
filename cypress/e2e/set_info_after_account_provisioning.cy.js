@@ -2,6 +2,10 @@
 
 import { getVerificationCodeFromEmail } from "../support/get-from-email.js";
 
+before(() => {
+  cy.seed();
+});
+
 describe("set info after account provisioning", () => {
   before(() => {
     cy.mailslurp().then((mailslurp) =>

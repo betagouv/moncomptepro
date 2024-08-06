@@ -1,3 +1,9 @@
+//
+
+before(() => {
+  cy.seed();
+});
+
 describe("should suggest valid email address", () => {
   it("should sign-in", function () {
     cy.visit(`http://localhost:4001`);

@@ -1,4 +1,12 @@
+//
+
 import { generateToken } from "@sunknudsen/totp";
+
+//
+
+before(() => {
+  cy.seed();
+});
 
 describe("sign-in with TOTP on untrusted browser", () => {
   it("should sign-in with password and TOTP", function () {

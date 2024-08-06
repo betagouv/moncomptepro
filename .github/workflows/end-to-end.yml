@@ -42,29 +42,29 @@ jobs:
       fail-fast: false
       matrix:
         e2e_test:
+          - check_email_deliverability
+          - delete_account
+          - delete_totp
           - join_collectivite_territoriale_official_contact_domain
-          - join_org_with_verified_domain
+          - join_must_confirm
           - join_org_with_gouv_fr_domain
           - join_org_with_trackdechets_domain
+          - join_org_with_verified_domain
           - join_with_code_sent_to_official_contact_email
           - join_with_code_sent_to_official_educ_nat_contact_email
           - join_with_official_contact_email
           - join_with_sponsorship
+          - reauthenticate_on_admin_page
+          - redirect_after_session_expiration
+          - reset_password
+          - set_info_after_account_provisioning
           - signin_from_agentconnect_client
           - signin_from_legacy_client
           - signin_from_standard_client
           - signin_with_email_verification_renewal
           - signin_with_magic_link
-          - signup_entreprise_unipersonnelle
-          - redirect_after_session_expiration
-          - reset_password
-          - join_must_confirm
-          - set_info_after_account_provisioning
           - signin_with_totp
-          - reauthenticate_on_admin_page
-          - check_email_deliverability
-          - delete_account
-          - delete_totp
+          - signup_entreprise_unipersonnelle
     runs-on: ubuntu-22.04
     services:
       moncomptepro-standard-client:
@@ -126,8 +126,6 @@ jobs:
           node-version-file: package.json
       - run: npm ci --include=dev
       - run: npm run migrate up
-      - run: npm run fixtures:load-ci -- cypress/fixtures/${{ matrix.e2e_test }}.sql
-      - run: npm run update-organization-info -- 500
       - name: Cypress run
         uses: cypress-io/github-action@v6.6.1
         with:

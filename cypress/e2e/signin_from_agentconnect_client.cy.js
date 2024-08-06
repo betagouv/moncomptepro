@@ -1,5 +1,9 @@
 //
 
+before(() => {
+  cy.seed();
+});
+
 describe("sign-in from agentconnect client", () => {
   it("should sign-in", function () {
     cy.visit(`http://localhost:4001`);

@@ -2,6 +2,12 @@
 
 import { getVerificationCodeFromEmail } from "../support/get-from-email.js";
 
+//
+
+before(() => {
+  cy.seed();
+});
+
 describe("Signup into new entreprise unipersonnelle", () => {
   before(() => {
     cy.mailslurp().then((mailslurp) =>

@@ -1,4 +1,10 @@
+//
+
 import { generateToken } from "@sunknudsen/totp";
+
+before(() => {
+  cy.seed();
+});
 
 describe("delete TOTP connexion", () => {
   before(() => {

@@ -59,7 +59,7 @@ Cypress.Commands.add("seed", () => {
     cy.exec(command);
   }
   {
-    const command = `npm run update-organization-info 2000`;
+    const command = `npm run update-organization-info -- 500`;
     cy.task("log", `$ ${command}`);
     cy.exec(command);
   }
