@@ -2,6 +2,12 @@
 
 import { getVerificationWordsFromEmail } from "../support/get-from-email.js";
 
+//
+
+before(() => {
+  cy.seed();
+});
+
 describe("join organizations", () => {
   before(() => {
     cy.mailslurp().then((mailslurp) =>

@@ -1,5 +1,9 @@
 //
 
+before(() => {
+  cy.seed();
+});
+
 describe("delete account", () => {
   before(() => {
     cy.mailslurp().then((mailslurp) =>

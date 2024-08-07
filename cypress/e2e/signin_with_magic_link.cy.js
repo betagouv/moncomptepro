@@ -5,6 +5,12 @@ import {
   getVerificationCodeFromEmail,
 } from "../support/get-from-email.js";
 
+//
+
+before(() => {
+  cy.seed();
+});
+
 describe("sign-in with magic link", () => {
   before(() => {
     cy.mailslurp().then((mailslurp) =>

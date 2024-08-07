@@ -1,5 +1,9 @@
 //
 
+before(() => {
+  cy.seed();
+});
+
 describe("join organizations", () => {
   it("join big company with free email provider", function () {
     cy.login("unused1@yopmail.com", "password123");

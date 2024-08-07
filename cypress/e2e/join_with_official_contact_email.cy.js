@@ -1,5 +1,9 @@
 //
 
+before(() => {
+  cy.seed();
+});
+
 describe("join organizations", () => {
   beforeEach(() => {
     cy.mailslurp().then((mailslurp) =>

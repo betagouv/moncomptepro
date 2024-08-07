@@ -2,6 +2,10 @@
 
 import { getVerificationCodeFromEmail } from "../support/get-from-email.js";
 
+before(() => {
+  cy.seed();
+});
+
 describe("sign-in with email verification renewal", () => {
   before(() => {
     cy.mailslurp().then((mailslurp) =>

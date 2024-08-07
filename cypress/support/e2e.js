@@ -17,6 +17,7 @@
 import "cypress-mailslurp";
 import "cypress-axe";
 import { checkA11y } from "./a11y/checkA11y";
+import { basename } from "path";
 
 //
 
@@ -36,4 +37,30 @@ Cypress.Commands.add("login", (email, password) => {
       .contains("S’identifier")
       .click();
   });
+});
+
+Cypress.Commands.add("seed", () => {
+  const scope = basename(Cypress.spec.name, ".cy.js");
+  cy.task("log", scope);
+
+  {
+    const command = `npm run migrate up`;
+    cy.task("log", `$ ${command}`);
+    cy.exec(command);
+  }
+  {
+    const command = "ENABLE_DATABASE_DELETION=True npm run delete-database";
+    cy.task("log", `$ ${command}`);
+    cy.exec(command);
+  }
+  {
+    const command = `npm run fixtures:load-ci -- cypress/fixtures/${scope}.sql`;
+    cy.task("log", `$ ${command}`);
+    cy.exec(command);
+  }
+  {
+    const command = `npm run update-organization-info -- 500`;
+    cy.task("log", `$ ${command}`);
+    cy.exec(command);
+  }
 });

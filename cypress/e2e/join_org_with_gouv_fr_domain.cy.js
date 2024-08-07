@@ -1,5 +1,9 @@
 //
 
+before(() => {
+  cy.seed();
+});
+
 describe("join organizations", () => {
   beforeEach(() => {
     cy.login("unused@fake.gouv.fr", "password123");
